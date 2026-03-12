@@ -1,0 +1,34 @@
+{
+  "name": "varbase_recipes",
+  "description": "Provides general custom config action plugins. Manages custom optional recipes for Drupal root projects with Vardot/Varbase recipes",
+  "license": "GPL-2.0-or-later",
+  "private": true,
+  "engines": {
+    "yarn": ">= 4.9.3",
+    "node": ">= 20.0"
+  },
+  "keywords": [
+    "Drupal",
+    "Varbase",
+    "Recipes",
+    "Project Browser"
+  ],
+  "author": "Vardot",
+  "scripts": {
+    "phpcs": "phpcs --standard=./.phpcs.xml .",
+    "phpcbf": "phpcbf --standard=./.phpcs.xml .",
+    "lint:yaml": "node ./node_modules/eslint/bin/eslint.js --ext .yml .",
+    "spellcheck": "cspell lint ."
+  },
+  "devDependencies": {
+    "cspell": "^8.16.1",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^10.1.3",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.4.0",
+    "eslint-plugin-yml": "^1.18.0",
+    "prettier": "^3.5.3"
+  },
+  "packageManager": "yarn@4.9.3"
+}

@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Install and uninstall hooks for the Varbase Recipes module.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Automatically enable the varbase_recipes source in Project Browser.
+ */
+function varbase_recipes_install() {
+  $config = \Drupal::configFactory()->getEditable('project_browser.admin_settings');
+  $enabled = $config->get('enabled_sources') ?? [];
+
+  if (!array_key_exists('varbase_recipes', $enabled)) {
+    $enabled['varbase_recipes'] = [];
+    $config->set('enabled_sources', $enabled)->save();
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ *
+ * Remove the varbase_recipes source when the module is uninstalled.
+ */
+function varbase_recipes_uninstall() {
+  $config = \Drupal::configFactory()->getEditable('project_browser.admin_settings');
+  $enabled = $config->get('enabled_sources') ?? [];
+
+  if (array_key_exists('varbase_recipes', $enabled)) {
+    unset($enabled['varbase_recipes']);
+    $config->set('enabled_sources', $enabled)->save();
+  }
+}

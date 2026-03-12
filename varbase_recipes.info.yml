@@ -1,0 +1,7 @@
+name: 'Varbase Recipes'
+type: module
+description: 'Provides general custom config action plugins. Manages custom optional recipes for Drupal root projects with Vardot/Varbase recipes.'
+package: Varbase
+core_version_requirement: ~11.3.0
+dependencies:
+  - drupal:project_browser

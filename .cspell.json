@@ -1,0 +1,18 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "varbase",
+    "Varbase",
+    "Vardot",
+    "vardot",
+    "phpcs",
+    "phpcbf",
+    "loadjs",
+    "ckeditor",
+    "uniqid"
+  ],
+  "ignorePaths": [
+    "node_modules/**"
+  ]
+}

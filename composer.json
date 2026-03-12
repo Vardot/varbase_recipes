@@ -1,0 +1,23 @@
+{
+  "name": "drupal/varbase_recipes",
+  "description": "Provides general custom config action plugins. Manages custom optional recipes for Drupal root projects with Vardot/Varbase recipes",
+  "type": "drupal-module",
+  "homepage": "https://www.drupal.org/project/varbase_recipes",
+  "notification-url": "https://packages.drupal.org/8/downloads",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Vardot",
+      "homepage": "https://www.drupal.org/vardot",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/varbase_recipes",
+    "source": "https://www.drupal.org/project/varbase_recipes"
+  },
+  "require": {
+    "drupal/core": "~11.3.0",
+    "drupal/project_browser": "~2"
+  }
+}
