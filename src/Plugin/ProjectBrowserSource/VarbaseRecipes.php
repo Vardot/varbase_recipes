@@ -30,7 +30,7 @@ use Symfony\Component\Finder\Finder;
   id: 'varbase_recipes',
   label: new TranslatableMarkup('Varbase recipes'),
   description: new TranslatableMarkup('Recipes prefixed with "varbase_" available in this codebase.'),
-  local_task: [],
+  local_task: ['weight' => 0],
 )]
 final class VarbaseRecipes extends ProjectBrowserSourceBase {
 

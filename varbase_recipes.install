@@ -18,6 +18,19 @@ function varbase_recipes_install() {
     $enabled['varbase_recipes'] = [];
     $config->set('enabled_sources', $enabled)->save();
   }
+
+  // Clear any stale project_browser applied-recipes state for varbase_*
+  // recipes. When the Varbase profile applies recipes during installation,
+  // it stores their paths in state. Later config drift (from other applied
+  // recipes) can cause RecipePreExistingConfigException when Project Browser
+  // tries to render the recipe list. Clearing the state here resets varbase
+  // recipes to "Present" status so the list renders without errors.
+  $state = \Drupal::state();
+  $applied = $state->get('project_browser.applied_recipes', []);
+  $applied = array_values(array_filter($applied, static function (string $path): bool {
+    return !str_contains(basename($path), 'varbase_');
+  }));
+  $state->set('project_browser.applied_recipes', $applied);
 }
 
 /**

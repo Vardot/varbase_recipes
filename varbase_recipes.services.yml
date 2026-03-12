@@ -1,0 +1,6 @@
+services:
+  Drupal\varbase_recipes\Activator\VarbaseRecipeActivator:
+    arguments:
+      - '@Drupal\project_browser\Activator\RecipeActivator'
+    tags:
+      - { name: project_browser.activator, priority: 10 }
