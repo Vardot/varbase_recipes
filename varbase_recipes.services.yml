@@ -4,3 +4,7 @@ services:
       - '@Drupal\project_browser\Activator\RecipeActivator'
     tags:
       - { name: project_browser.activator, priority: 10 }
+
+  logger.channel.varbase_recipes:
+    parent: logger.channel_base
+    arguments: ['varbase_recipes']

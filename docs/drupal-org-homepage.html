@@ -1,0 +1,123 @@
+<p>
+  <strong>Varbase Recipes</strong> extends the
+  <a href="https://www.drupal.org/project/project_browser">Project Browser</a>
+  with a dedicated <strong>"Varbase recipes"</strong> tab and provides custom
+  <a href="https://project.pages.drupalcode.org/distributions_recipes/config_actions.html">Drupal Recipes Config Action</a>
+  plugins that automate post-install setup steps for
+  <a href="https://www.drupal.org/project/varbase">Varbase</a> sites.
+</p>
+
+<p>
+  It is best used with the <a href="https://www.drupal.org/project/varbase">Varbase</a>
+  distribution, but can also be installed on any Drupal 11 site — even with the
+  Minimal or Standard profile.
+</p>
+
+<h2>Browse and Install Varbase Recipes</h2>
+
+<p>
+  Once installed, a new <strong>"Varbase recipes"</strong> tab appears in the
+  Project Browser (<em>Administration → Extend → Browse projects</em>).
+  It lists all available Varbase base recipes with one-click Install and Reapply
+  actions — no Drush or Composer commands needed.
+</p>
+
+<p>
+  <img
+    src="https://www.drupal.org/files/issues/2026-03-12/Browse-projects-My-Varbase-site-03-13-2026_01_42_AM.png"
+    alt="Browse projects — Varbase recipes tab, page 1, showing Varbase Admin Base, API Base, Auth Base, Blog Base, Content Base, Demo Content, Development Base, Editor Base, Internationalization Base, Media Assets, Media Base, and Page Base recipes with Installed and Install badges."
+    style="max-width:100%;height:auto;border:1px solid #ddd;border-radius:4px;"
+  />
+</p>
+
+<p>
+  <img
+    src="https://www.drupal.org/files/issues/2026-03-13/Browse-projects-My-Varbase-site-03-13-2026_01_43_AM.png"
+    alt="Browse projects — Varbase recipes tab, page 2, showing Varbase Performance Base, Security Base, SEO Base, Starter, Users Base, Webform Base, and Workflow Base recipes — all marked as Installed."
+    style="max-width:100%;height:auto;border:1px solid #ddd;border-radius:4px;margin-top:16px;"
+  />
+</p>
+
+<p>The following Varbase recipes are available through the tab:</p>
+
+<ul>
+  <li><strong>Varbase Admin Base</strong> — Default installed modules, configs and permissions for Varbase admin experience.</li>
+  <li><strong>Varbase API Base</strong> — JSON:API with authentication, authorization, and OpenAPI documentation.</li>
+  <li><strong>Varbase Auth Base</strong> — Social Single Sign-On with default social authentication modules.</li>
+  <li><strong>Varbase Blog Base</strong> — Blog post content type, listing page, and related configuration.</li>
+  <li><strong>Varbase Content Base</strong> — Foundational content structure: content types, taxonomy vocabularies, block content, menu system, path aliases, and more.</li>
+  <li><strong>Varbase Demo Content</strong> — Sample pages that demonstrate key Varbase features.</li>
+  <li><strong>Varbase Development Base</strong> — Development environment modules and configurations (disable in production).</li>
+  <li><strong>Varbase Editor Base</strong> — Default installed modules, configs and permissions for Varbase CKEditor 5 rich text editing capabilities.</li>
+  <li><strong>Varbase Internationalization Base</strong> — Internationalization, languages, and translation support for multilingual sites.</li>
+  <li><strong>Varbase Media Assets</strong> — Default demo media assets for Varbase Media Types.</li>
+  <li><strong>Varbase Media Base</strong> — Core media modules with default Varbase configurations including media library, focal point, and media types.</li>
+  <li><strong>Varbase Page Base</strong> — Page content type with SEO fields, editorial workflow, and menu configuration.</li>
+  <li><strong>Varbase Performance Base</strong> — Default performance optimizations: page caching, asset aggregation, image optimization, lazy loading, and speed enhancements.</li>
+  <li><strong>Varbase Security Base</strong> — Default security configurations: password policy, username enumeration prevention, security kit, CAPTCHA, honeypot, anti-bot, and flood control.</li>
+  <li><strong>Varbase SEO Base</strong> — Default installed modules, configs and permissions for Varbase Search Engine Optimization (SEO) core features and settings.</li>
+  <li><strong>Varbase Starter</strong> — A starter site template recipe for Varbase, providing a modern recipe-first approach to initializing Varbase sites.</li>
+  <li><strong>Varbase Users Base</strong> — Default Varbase user roles and user management configurations, including role definitions, account settings, and the modules needed to support user management.</li>
+  <li><strong>Varbase Webform Base</strong> — Default installed webform modules, configurations, and permissions for Varbase webform experience.</li>
+  <li><strong>Varbase Workflow Base</strong> — Advanced editorial and publishing workflow with content moderation, built on top of the basic Workflow Integration in Drupal CMS.</li>
+</ul>
+
+<h2>Custom Config Action Plugins</h2>
+
+<p>
+  Varbase Recipes provides custom
+  <a href="https://project.pages.drupalcode.org/distributions_recipes/config_actions.html">Config Action</a>
+  plugins for use in recipe YAML files. These automate post-install setup steps
+  that are unsafe to run with standard Drush commands during Drupal installation.
+</p>
+
+<h3><code>setCKEditorMediaEmbedVersion</code></h3>
+
+<p>
+  <strong>Module dependency:</strong> <code>ckeditor_media_embed</code>
+</p>
+
+<p>
+  Detects the current CKEditor version in use on the site and saves it as
+  <code>plugins_version_installed</code> in <code>ckeditor_media_embed.settings</code>.
+  This is the safe, installation-friendly equivalent of:
+</p>
+
+<pre><code>drush config-set ckeditor_media_embed.settings plugins_version_installed &lt;version&gt;</code></pre>
+
+<p>
+  Unlike <code>drush ckeditor_media_embed:install</code>, this action does
+  <strong>not</strong> call <code>drupal_flush_all_caches()</code>, making it
+  safe to run inside the Drupal installation batch process.
+</p>
+
+<p><strong>Recipe YAML usage:</strong></p>
+
+<pre><code>config:
+  actions:
+    ckeditor_media_embed.settings:
+      setCKEditorMediaEmbedVersion: true</code></pre>
+
+<h2>Requirements</h2>
+
+<ul>
+  <li><a href="https://www.drupal.org/project/project_browser">Project Browser</a> module</li>
+  <li>Drupal ~11.3.0</li>
+</ul>
+
+<h2>Install with Composer</h2>
+
+<pre><code>composer require drupal/varbase_recipes</code></pre>
+
+<h2>Resources</h2>
+
+<ul>
+  <li><a href="https://docs.varbase.vardot.com">Varbase Documentation</a></li>
+  <li><a href="https://www.drupal.org/project/issues/varbase_recipes">Issue queue</a></li>
+  <li><a href="http://varbase.slack.com">Varbase Slack</a></li>
+</ul>
+
+<p>
+  This module is sponsored and developed by
+  <a href="https://www.drupal.org/vardot">Vardot</a>.
+</p>

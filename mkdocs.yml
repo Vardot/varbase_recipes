@@ -1,0 +1,58 @@
+site_name: Varbase Recipes Documentation
+site_url: https://project.pages.drupalcode.org/varbase_recipes/
+repo_url: https://git.drupalcode.org/project/varbase_recipes
+repo_name: varbase_recipes
+edit_uri: edit/1.0.x/docs/
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+
+nav:
+  - Home: index.md
+  - Config Actions:
+    - setCKEditorMediaEmbedVersion: config-actions/set-ckeditor-media-embed-version.md
+
+markdown_extensions:
+  - admonition
+  - tables
+  - attr_list
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - toc:
+      permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/drupal
+      link: https://www.drupal.org/project/varbase_recipes
+      name: Varbase Recipes on Drupal.org
+    - icon: fontawesome/brands/slack
+      link: https://drupal.slack.com
+      name: Drupal Slack
+
+copyright: Sponsored and developed by <a href="https://www.drupal.org/vardot">Vardot</a>
