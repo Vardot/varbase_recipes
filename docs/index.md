@@ -59,6 +59,10 @@ that are unsafe to run with standard Drush commands during Drupal installation.
 | Plugin ID | Description |
 |---|---|
 | [`setCKEditorMediaEmbedVersion`](config-actions/set-ckeditor-media-embed-version.md) | Detects the current CKEditor version and saves it as `plugins_version_installed` in `ckeditor_media_embed.settings`. |
+| [`mergeAllowedHtml`](config-actions/merge-allowed-html.md) | Merges allowed HTML tags and attributes into an existing text format's `filter_html` allowed-HTML setting without replacing what is already there. |
+| [`enableCKEditorPlugin`](config-actions/enable-ckeditor-plugin.md) | Initialises a CKEditor 5 plugin with its default configuration in an editor text format. Useful for plugins that have no toolbar button. |
+| [`addButtonPluginIntoActiveToolbar`](config-actions/add-button-plugin-into-active-toolbar.md) | Adds a toolbar button at a specific position and optionally registers plugin settings in one action. |
+| [`updatePluginSettings`](config-actions/update-plugin-settings.md) | Replaces the settings of an already-configured CKEditor 5 plugin in an editor text format. |
 
 ---
 

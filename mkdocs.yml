@@ -39,6 +39,10 @@ nav:
   - Introduction: "index.md"
   - Config Actions:
       - setCKEditorMediaEmbedVersion: "config-actions/set-ckeditor-media-embed-version.md"
+      - mergeAllowedHtml: "config-actions/merge-allowed-html.md"
+      - enableCKEditorPlugin: "config-actions/enable-ckeditor-plugin.md"
+      - addButtonPluginIntoActiveToolbar: "config-actions/add-button-plugin-into-active-toolbar.md"
+      - updatePluginSettings: "config-actions/update-plugin-settings.md"
 
 plugins:
   - search
