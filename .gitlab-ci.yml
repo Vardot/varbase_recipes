@@ -29,10 +29,9 @@ phpunit:
   allow_failure: true
 
 pages:
-  stage: deploy
-  image: python:3.12
+  stage: .post
+  image: squidfunk/mkdocs-material
   script:
-    - pip install -r requirements.txt
     - mkdocs build --site-dir public
   artifacts:
     paths:

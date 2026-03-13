@@ -1,58 +1,50 @@
-site_name: Varbase Recipes Documentation
-site_url: https://project.pages.drupalcode.org/varbase_recipes/
+site_name: "Varbase Recipes"
 repo_url: https://git.drupalcode.org/project/varbase_recipes
-repo_name: varbase_recipes
-edit_uri: edit/1.0.x/docs/
+repo_name: drupal/varbase_recipes
+edit_uri: /-/edit/1.0.x/docs/
 
 theme:
   name: material
+  language: en
+  logo: logo.png
+  # favicon: favicon.ico
   palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      primary: indigo
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
+      primary: indigo
       scheme: default
-      primary: blue
-      accent: blue
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
+    # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
+      primary: indigo
       scheme: slate
-      primary: blue
-      accent: blue
       toggle:
         icon: material/brightness-4
-        name: Switch to light mode
+        name: Switch to system preference
   features:
-    - navigation.tabs
+    # - navigation.tabs
+    # - navigation.tabs.sticky
     - navigation.sections
-    - navigation.top
-    - search.suggest
-    - search.highlight
-    - content.code.copy
-    - content.action.edit
+    # - navigation.expand
 
 nav:
-  - Home: index.md
+  - Introduction: "index.md"
   - Config Actions:
-    - setCKEditorMediaEmbedVersion: config-actions/set-ckeditor-media-embed-version.md
+      - setCKEditorMediaEmbedVersion: "config-actions/set-ckeditor-media-embed-version.md"
+
+plugins:
+  - search
+  - privacy:
+      enabled: !ENV [CI, false]
 
 markdown_extensions:
-  - admonition
-  - tables
-  - attr_list
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.superfences
-  - pymdownx.snippets
-  - toc:
-      permalink: true
-
-extra:
-  social:
-    - icon: fontawesome/brands/drupal
-      link: https://www.drupal.org/project/varbase_recipes
-      name: Varbase Recipes on Drupal.org
-    - icon: fontawesome/brands/slack
-      link: https://drupal.slack.com
-      name: Drupal Slack
-
-copyright: Sponsored and developed by <a href="https://www.drupal.org/vardot">Vardot</a>
+  # - markdown.extensions.admonition
+  - pymdownx.extra
