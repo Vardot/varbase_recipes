@@ -43,6 +43,7 @@ nav:
       - enableCKEditorPlugin: "config-actions/enable-ckeditor-plugin.md"
       - addButtonPluginIntoActiveToolbar: "config-actions/add-button-plugin-into-active-toolbar.md"
       - updatePluginSettings: "config-actions/update-plugin-settings.md"
+      - setEntityReferenceHandler: "config-actions/set-entity-reference-handler.md"
 
 plugins:
   - search
