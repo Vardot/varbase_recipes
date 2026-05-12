@@ -63,6 +63,8 @@ that are unsafe to run with standard Drush commands during Drupal installation.
 | [`enableCKEditorPlugin`](config-actions/enable-ckeditor-plugin.md) | Initialises a CKEditor 5 plugin with its default configuration in an editor text format. Useful for plugins that have no toolbar button. |
 | [`addButtonPluginIntoActiveToolbar`](config-actions/add-button-plugin-into-active-toolbar.md) | Adds a toolbar button at a specific position and optionally registers plugin settings in one action. |
 | [`updatePluginSettings`](config-actions/update-plugin-settings.md) | Replaces the settings of an already-configured CKEditor 5 plugin in an editor text format. |
+| [`setEntityReferenceHandler`](config-actions/set-entity-reference-handler.md) | Updates the entity reference selection handler (and optional handler settings) on a `field_config`, replacing the `handler` while merging into `handler_settings`. |
+| [`setAiContextItemsDefaultScope`](config-actions/set-ai-context-items-default-scope.md) | Assigns a scope (Global, Use Case, Tag, Site Section, Entity Bundle, Target Entity, Language) to `ai_context_item` content entities created by a recipe's content step — works around the fact that Drupal core's default-content importer cannot write to `map` fields. |
 
 ---
 

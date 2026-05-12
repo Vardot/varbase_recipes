@@ -44,6 +44,7 @@ nav:
       - addButtonPluginIntoActiveToolbar: "config-actions/add-button-plugin-into-active-toolbar.md"
       - updatePluginSettings: "config-actions/update-plugin-settings.md"
       - setEntityReferenceHandler: "config-actions/set-entity-reference-handler.md"
+      - setAiContextItemsDefaultScope: "config-actions/set-ai-context-items-default-scope.md"
 
 plugins:
   - search
