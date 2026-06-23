@@ -101,8 +101,11 @@ final class VarbaseRecipes extends ProjectBrowserSourceBase {
           logo: Url::fromUri($logo_url),
           isCompatible: TRUE,
           machineName: $machine_name,
+          // Recipe title/description are dynamic content from recipe.yml.
+          // phpcs:disable Drupal.Semantics.FunctionT.NotLiteralString
           body: $description ? ['summary' => $this->t($description)] : [],
           title: $this->t($title),
+          // phpcs:enable Drupal.Semantics.FunctionT.NotLiteralString
           packageName: $package_name,
           url: $homepage ? Url::fromUri($homepage) : NULL,
           type: ProjectType::Recipe,

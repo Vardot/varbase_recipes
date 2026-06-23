@@ -158,8 +158,7 @@ class RecipeHelper {
   }
 
   /**
-   * Sets the `button_index` key for an `addButtonPluginIntoActiveToolbar`
-   * action in recipe data.
+   * Sets the `button_index` key for an addButtonPluginIntoActiveToolbar action.
    *
    * Used together with getToolbarItemPosition() to insert a button relative to
    * another item already in the toolbar. Has no effect when $position is -1
@@ -180,8 +179,7 @@ class RecipeHelper {
   }
 
   /**
-   * Checks whether the CKEditor 5 block styles for an editor match a given
-   * array of styles.
+   * Checks whether an editor's CKEditor 5 block styles match a given array.
    *
    * Useful in update hooks to determine whether a style update has already
    * been applied before re-running a recipe.

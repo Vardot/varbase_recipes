@@ -10,7 +10,25 @@
     "phpcbf",
     "loadjs",
     "ckeditor",
-    "uniqid"
+    "uniqid",
+    "Drush",
+    "Initialises",
+    "Webform",
+    "aickeditor",
+    "automators",
+    "autoresize",
+    "behaviour",
+    "drush",
+    "endcode",
+    "initialise",
+    "initialises",
+    "mkdocs",
+    "normalises",
+    "phar",
+    "phpstan",
+    "pymdownx",
+    "spellfix",
+    "webform"
   ],
   "ignorePaths": [
     "node_modules/**"
