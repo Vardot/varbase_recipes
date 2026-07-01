@@ -26,7 +26,7 @@ stuff!
 ## Requirements
 
 - [Project Browser](https://www.drupal.org/project/project_browser) module.
-- Drupal ~11.3.0
+- Drupal ~11.4.0
 
 ## Custom Config Actions
 
