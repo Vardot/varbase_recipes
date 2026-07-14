@@ -53,6 +53,28 @@ phpstan:
     - php -d memory_limit=2G ./vendor/bin/phpstan analyse -c web/modules/custom/varbase_recipes/phpstan.neon --no-progress
   allow_failure: false
 
+phpunit:
+  stage: validate
+  image: php:8.3-cli
+  before_script:
+    - apt-get update -y > /dev/null && apt-get install -y -qq git unzip libpng-dev libjpeg-dev libzip-dev libsqlite3-dev > /dev/null
+    - docker-php-ext-configure gd --with-jpeg > /dev/null && docker-php-ext-install -j"$(nproc)" gd pdo_sqlite zip > /dev/null
+    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    - composer create-project drupal/recommended-project:~$DRUPAL_CORE /drupal --no-interaction --no-install
+    - cd /drupal
+    - composer config --no-plugins allow-plugins true
+    - composer config minimum-stability dev
+    - composer require --no-interaction --no-progress --ignore-platform-reqs -W drupal/canvas drupal/varbase_components:4.0.x-dev drupal/project_browser
+    - composer require --dev --no-interaction --no-progress --ignore-platform-reqs -W drupal/core-dev:~$DRUPAL_CORE
+    - composer install --no-interaction --no-progress --ignore-platform-reqs
+    - mkdir -p web/modules/custom && cp -r "$CI_PROJECT_DIR" web/modules/custom/varbase_recipes
+  script:
+    - cd /drupal
+    - export SIMPLETEST_DB="sqlite://localhost/sites/default/files/.ht.sqlite"
+    - ls -R web/modules/custom/varbase_recipes/tests | head -20
+    - php -d memory_limit=2G ./vendor/bin/phpunit -c web/core/phpunit.xml.dist --do-not-cache-result web/modules/custom/varbase_recipes/tests/src/Kernel
+  allow_failure: false
+
 cspell:
   stage: validate
   image: node:20

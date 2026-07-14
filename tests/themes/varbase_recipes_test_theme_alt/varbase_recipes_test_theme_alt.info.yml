@@ -1,0 +1,5 @@
+name: 'Varbase Recipes alternative test theme'
+type: theme
+description: 'Provides the same Single Directory Component under a second theme, to test repointing.'
+core_version_requirement: ^11
+base theme: stark

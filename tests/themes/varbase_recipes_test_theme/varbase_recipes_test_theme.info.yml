@@ -1,0 +1,5 @@
+name: 'Varbase Recipes test theme'
+type: theme
+description: 'Provides a Single Directory Component used to test the Canvas config actions.'
+core_version_requirement: ^11
+base theme: stark

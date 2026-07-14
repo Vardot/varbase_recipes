@@ -18,6 +18,7 @@
   },
   "require": {
     "drupal/core": "~11.4.0",
-    "drupal/project_browser": "~2"
+    "drupal/project_browser": "~2",
+    "drupal/varbase_components": "4.0.x-dev"
   }
 }
