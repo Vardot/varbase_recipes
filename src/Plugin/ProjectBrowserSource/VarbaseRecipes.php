@@ -37,11 +37,11 @@ final class VarbaseRecipes extends ProjectBrowserSourceBase {
   use StringTranslationTrait;
 
   public function __construct(
-    private readonly FileSystemInterface $fileSystem,
-    private readonly CacheBackendInterface $cacheBin,
-    private readonly ModuleExtensionList $moduleList,
-    private readonly string $appRoot,
-    private readonly FileUrlGeneratorInterface $fileUrlGenerator,
+    protected FileSystemInterface $fileSystem,
+    protected CacheBackendInterface $cacheBin,
+    protected ModuleExtensionList $moduleList,
+    protected string $appRoot,
+    protected FileUrlGeneratorInterface $fileUrlGenerator,
     mixed ...$arguments,
   ) {
     parent::__construct(...$arguments);

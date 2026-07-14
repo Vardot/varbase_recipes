@@ -6,7 +6,6 @@ namespace Drupal\varbase_recipes\Recipe;
 
 use Drupal\Component\Serialization\Yaml as SerializationYaml;
 use Drupal\Core\Recipe\Recipe;
-use Symfony\Component\Yaml\Yaml;
 
 /**
  * General-purpose helper methods for working with Drupal Recipes.
@@ -51,7 +50,7 @@ class RecipeHelper {
    *   The parsed recipe data.
    */
   public static function getRecipeData(string $recipePath): array {
-    return (array) Yaml::parse(file_get_contents(self::resolveRecipePath($recipePath)));
+    return (array) SerializationYaml::decode(file_get_contents(self::resolveRecipePath($recipePath)));
   }
 
   /**
