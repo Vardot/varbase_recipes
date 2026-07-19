@@ -153,4 +153,105 @@ class SetViewsComponentStyleThemeTest extends KernelTestBase {
     $this->assertSame($before, View::load('test_listing')->get('display'));
   }
 
+  /**
+   * Creates a view rendering through style and exposed form components.
+   */
+  protected function createViewWithExposedForm(): View {
+    $view = View::create([
+      'id' => 'test_listing_exposed',
+      'label' => 'Test listing with exposed form',
+      'base_table' => 'node_field_data',
+      'display' => [
+        'default' => [
+          'id' => 'default',
+          'display_plugin' => 'default',
+          'display_title' => 'Default',
+          'display_options' => [
+            'style' => [
+              'type' => 'components_views_style',
+              'options' => ['component_id' => 'vartheme_bs5:views-view-grid'],
+            ],
+            'exposed_form' => [
+              'type' => 'components_exposed_form',
+              'options' => ['component_id' => 'vartheme_bs5:views-exposed-filters'],
+            ],
+          ],
+        ],
+        'page_1' => [
+          'id' => 'page_1',
+          'display_plugin' => 'page',
+          'display_title' => 'Page',
+          'display_options' => [
+            'exposed_form' => [
+              'type' => 'components_exposed_form',
+              'options' => ['component_id' => 'vartheme_bs5:views-exposed-filters'],
+            ],
+          ],
+        ],
+      ],
+    ]);
+    $view->save();
+    return $view;
+  }
+
+  /**
+   * Repoints both the style and the exposed form component on a display.
+   *
+   * The component name is preserved and only the theme part is rewritten.
+   */
+  public function testExposedFormComponentIsRepointedAlongsideStyle(): void {
+    $this->createViewWithExposedForm();
+
+    $this->configActionManager->applyAction(
+      'setViewsComponentStyleTheme',
+      'views.view.test_listing_exposed',
+      ['theme' => 'vartheme_bs5_educare'],
+    );
+
+    $displays = View::load('test_listing_exposed')->get('display');
+    $this->assertSame('vartheme_bs5_educare:views-view-grid', $displays['default']['display_options']['style']['options']['component_id']);
+    $this->assertSame('vartheme_bs5_educare:views-exposed-filters', $displays['default']['display_options']['exposed_form']['options']['component_id']);
+  }
+
+  /**
+   * Repoints a display with an exposed form component and no style.
+   */
+  public function testExposedFormOnlyDisplayIsRepointed(): void {
+    $this->createViewWithExposedForm();
+
+    $this->configActionManager->applyAction(
+      'setViewsComponentStyleTheme',
+      'views.view.test_listing_exposed',
+      ['theme' => 'vartheme_bs5_educare'],
+    );
+
+    $displays = View::load('test_listing_exposed')->get('display');
+    $this->assertSame('vartheme_bs5_educare:views-exposed-filters', $displays['page_1']['display_options']['exposed_form']['options']['component_id']);
+    $this->assertArrayNotHasKey('style', $displays['page_1']['display_options']);
+  }
+
+  /**
+   * Repoints the exposed form when the style already matches the theme.
+   */
+  public function testOnlyExposedFormChangeStillAppliesWhenStyleAlreadyMatches(): void {
+    $view = $this->createViewWithExposedForm();
+    $displays = $view->get('display');
+    // Pre-point the style component at the target theme, so only the
+    // exposed form component still needs to change.
+    $displays['default']['display_options']['style']['options']['component_id'] = 'vartheme_bs5_educare:views-view-grid';
+    $view->set('display', $displays)->save();
+
+    $this->configActionManager->applyAction(
+      'setViewsComponentStyleTheme',
+      'views.view.test_listing_exposed',
+      ['theme' => 'vartheme_bs5_educare'],
+    );
+
+    $displays = View::load('test_listing_exposed')->get('display');
+    // The style component was already correct and is left untouched.
+    $this->assertSame('vartheme_bs5_educare:views-view-grid', $displays['default']['display_options']['style']['options']['component_id']);
+    // The exposed form component is still repointed.
+    $this->assertSame('vartheme_bs5_educare:views-exposed-filters', $displays['default']['display_options']['exposed_form']['options']['component_id']);
+  }
+
 }

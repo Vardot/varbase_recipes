@@ -17,11 +17,14 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Config action to point a view's component style at another theme.
  *
- * A view rendered through the Canvas components views style names the theme in
- * its style options, e.g. `vartheme_bs5:views-view-grid`. A site template with
- * its own theme has to change that in every display. This action rewrites the
- * theme part of `style.options.component_id` on every display that has one,
- * leaving the component name (`views-view-grid`) alone.
+ * A view rendered through the components views style names the theme in its
+ * style options, e.g. `vartheme_bs5:views-view-grid`, and a view whose exposed
+ * filters render through a component names it again in its exposed form
+ * options. A site template with its own theme has to change that in every
+ * display. This action rewrites the theme part of both
+ * `style.options.component_id` and `exposed_form.options.component_id` on every
+ * display that has one, leaving the component name (`views-view-grid`,
+ * `views-exposed-filters`) alone.
  *
  * Example:
  * @code
@@ -99,17 +102,19 @@ final class SetViewsComponentStyleTheme implements ConfigActionPluginInterface, 
     $changed = 0;
 
     foreach ($displays as $id => $display) {
-      $component = $display['display_options']['style']['options']['component_id'] ?? NULL;
-      if (!is_string($component) || !str_contains($component, ':')) {
-        continue;
+      foreach (['style', 'exposed_form'] as $plugin) {
+        $component = $display['display_options'][$plugin]['options']['component_id'] ?? NULL;
+        if (!is_string($component) || !str_contains($component, ':')) {
+          continue;
+        }
+        [, $name] = explode(':', $component, 2);
+        $target = $theme . ':' . $name;
+        if ($target === $component) {
+          continue;
+        }
+        $displays[$id]['display_options'][$plugin]['options']['component_id'] = $target;
+        $changed++;
       }
-      [, $name] = explode(':', $component, 2);
-      $target = $theme . ':' . $name;
-      if ($target === $component) {
-        continue;
-      }
-      $displays[$id]['display_options']['style']['options']['component_id'] = $target;
-      $changed++;
     }
 
     if ($changed === 0) {
@@ -118,7 +123,7 @@ final class SetViewsComponentStyleTheme implements ConfigActionPluginInterface, 
 
     $view->set('display', $displays)->save();
 
-    $this->logger->info('Pointed the component style of @count displays in @config at the @theme theme.', [
+    $this->logger->info('Pointed @count view components in @config at the @theme theme.', [
       '@count' => $changed,
       '@config' => $configName,
       '@theme' => $theme,
