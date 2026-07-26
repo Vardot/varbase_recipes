@@ -107,7 +107,16 @@ final class AddButtonPluginIntoActiveToolbar implements ConfigActionPluginInterf
     assert(is_array($pluginSettings));
 
     $editor = $this->configManager->loadConfigEntityByName($configName);
-    assert($editor instanceof EditorInterface);
+    if (!$editor instanceof EditorInterface) {
+      // The targeted editor does not exist on this site (wrong machine name,
+      // or a recipe input that was never collected). Skip with a warning so
+      // one missing editor cannot abort the whole recipe apply.
+      $this->logger->warning('Skipped adding button @button: editor config @config does not exist.', [
+        '@button' => $buttonName,
+        '@config' => $configName,
+      ]);
+      return;
+    }
 
     $settings = $editor->getSettings();
 
