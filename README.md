@@ -2,7 +2,7 @@
 
 # Varbase Recipes
 [![pipeline status](https://git.drupalcode.org/project/varbase_recipes/badges/1.0.x/pipeline.svg)](https://git.drupalcode.org/project/varbase_recipes/-/pipelines)
-[![Varbase Recipes](https://img.shields.io/badge/Varbase%20Recipes-1.0.0--beta4-0d6efc?labelColor=001d38&style=flat-square)](https://git.drupalcode.org/project/varbase_recipes/-/pipelines?ref=1.0.0-beta4)
+[![Varbase Recipes](https://img.shields.io/badge/Varbase%20Recipes-1.0.0-0d6efc?labelColor=001d38&style=flat-square)](https://git.drupalcode.org/project/varbase_recipes/-/pipelines?ref=1.0.0)
 [![Automated Functional Testing](https://git.drupalcode.org/project/varbase_project/badges/11.0.x/pipeline.svg)](https://git.drupalcode.org/project/varbase_project/-/pipelines)
 
 Provides general custom config action plugins. Manages custom optional recipes
