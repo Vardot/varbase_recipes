@@ -5,8 +5,10 @@
 ################################################################################
 stages: [build, validate]
 variables:
+  # No JavaScript lockfile is committed, so Yarn has to be allowed to write one.
+  YARN_ENABLE_IMMUTABLE_INSTALLS: "false"
   # Drupal 11.4.0 released 2026-07-01; pinned templates ref $CORE_STABLE is still 11.3.
-  DRUPAL_CORE: "11.4.0"
+  DRUPAL_CORE: "11.4.11"
   IGNORE_PROJECT_DRUPAL_CORE_VERSION: "1"
   COMPOSER_ALLOW_SUPERUSER: "1"
   COMPOSER_MEMORY_LIMIT: "-1"
@@ -77,7 +79,7 @@ phpunit:
 
 cspell:
   stage: validate
-  image: node:20
+  image: node:24
   before_script:
     - npm install -g cspell
   script:
@@ -86,7 +88,7 @@ cspell:
 
 eslint:
   stage: validate
-  image: node:20
+  image: node:24
   before_script:
     - if [ ! -f package.json ]; then echo "no package.json"; exit 0; fi
     - corepack enable && yarn install --mode=skip-build || true
@@ -97,7 +99,7 @@ eslint:
 
 stylelint:
   stage: validate
-  image: node:20
+  image: node:24
   before_script:
     - if [ ! -f package.json ]; then echo "no package.json"; exit 0; fi
     - corepack enable && yarn install --mode=skip-build || true
