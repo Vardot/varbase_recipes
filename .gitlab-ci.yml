@@ -26,7 +26,7 @@ build:composer-validate:
 
 phpcs:
   stage: validate
-  image: php:8.3-cli
+  image: php:8.5-cli
   before_script:
     - apt-get update -y > /dev/null && apt-get install -y -qq git unzip > /dev/null
     - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -39,7 +39,7 @@ phpcs:
 
 phpstan:
   stage: validate
-  image: php:8.3-cli
+  image: php:8.5-cli
   before_script:
     - apt-get update -y > /dev/null && apt-get install -y -qq git unzip > /dev/null
     - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -57,7 +57,7 @@ phpstan:
 
 phpunit:
   stage: validate
-  image: php:8.3-cli
+  image: php:8.5-cli
   before_script:
     - apt-get update -y > /dev/null && apt-get install -y -qq git unzip libpng-dev libjpeg-dev libzip-dev libsqlite3-dev > /dev/null
     - docker-php-ext-configure gd --with-jpeg > /dev/null && docker-php-ext-install -j"$(nproc)" gd pdo_sqlite zip > /dev/null
